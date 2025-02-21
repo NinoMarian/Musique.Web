@@ -1,0 +1,136 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: Arial, sans-serif;
+  background-color: black;
+}
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2em;
+  color: white;
+}
+
+.garen {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  color: white;
+  text-align: center;
+}
+
+.garen section {
+  display: inline-block;
+  width: 300px;
+  background-color: #222;
+  color: white;
+  border-radius: 10px;
+  margin: 15px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.garen section img {
+  width: 90%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.garen section audio {
+  width: 100%;
+  margin: 10px 0;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #333;
+  border-radius: 10px;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-volume-slider {
+  filter: invert(1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-top: 30px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  background-color: #333;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input, button {
+  padding: 10px;
+  font-size: 1em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+label {
+  color: white;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 1.8em;
+  color: white;
+  margin-bottom: 20px;
+}
+
+
+.credits {
+  margin-top: 50px; /* Espace au-dessus des crédits */
+  text-align: center;
+  font-size: 12px;
+  color: #888; /* Couleur douce et discrète */
+  font-family: Arial, sans-serif; /* Police simple et propre */
+}

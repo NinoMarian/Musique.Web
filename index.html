@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>♫</title>
+</head>
+<body>
+  <h1>Ma playlist</h1>
+
+  <div class="garen"></div> 
+
+  <br><br><br><br><br><br><br><br><br><br> 
+
+  <!-- Formulaire -->
+  <h2 class="form-title">Ajoute ta musique !</h2>
+  <form id="musiqueForm">
+    <label for="titre">Titre + Artiste :</label> 
+    <input type="text" id="titre" name="titre" required>
+    <br><br>
+
+    <label for="description">Description :</label>
+    <input id="description" name="description" required>
+    <br><br>
+
+    <label for="Extrait">Extrait de la musique :</label>
+    <input type="file" id="Extrait" name="Extrait" required>
+    <br><br>
+
+    <label for="lien">Lien de la musique (URL) :</label>
+    <input type="url" id="lien" name="lien" required>
+    <br><br>
+
+    <label for="image">Importer une image :</label>
+    <input type="file" id="image" name="image" required>
+    <br><br>
+
+    <button type="submit">Ajouter</button>
+
+    
+  </form>
+  <footer class="credits">
+    Crédits : d4vd :  © 2022 Darkroom/Interscope Records | BigXthatPlug :  © 600 Ent. | TWICE : ⓒ 2021 JYP Entertainment | Lil tecca : ⓒLyrics Limonade | XXXTENTATION : © 2017 Bad Vibes Forever / EMPIRE
+    <br>
+    Mentions légales : MARIAN Nino | nino.marian@univ-eiffel.fr 
+    <br>
+    hébergeur : université Gustave Eiffel  
+    <br>
+    Protection des données personnelles 
+
+  </footer>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    fetch('musiques.json').then(function (response) {
+      response.json().then(function (data) {
+        var numCase = 0;
+        data.forEach(function (musique) {
+          var codeDuBloc = 
+          "<section>"+
+            "<h2>" + musique.titre + "</h2>" +
+            "<p>" + musique.descriptionMusicale + "</p>" +
+            '<button class="play">⏵</button>'+"<audio src='" + musique.urlson + "'></audio>" +
+            "<img src='" + musique.image + "' alt='Image musique'/>"+
+            "<a href='" + musique.lien + "' target='_blank'>Lien vers Youtube</a>"
+            +"</section>"; 
+             
+          var codeHtml = codeDuBloc
+            .replace('{{titre}}', musique.titre)
+            .replace('{{description}}', musique.descriptionMusicale)
+            .replace('{{urlson}}', musique.urlson)
+            .replace('{{image}}', musique.image)
+            .replace('{{lien}}', musique.lien);
+        
+          numCase = numCase + 1
+          document.querySelector('.garen').innerHTML += codeHtml;
+          
+        
+        });
+        var x = 0
+        data.forEach(function (musique) {
+          
+          var name = false
+          var audio = document.querySelectorAll("audio") [x] ;
+        
+          var bouton = document.querySelectorAll('.play') [x];
+          bouton.addEventListener('click', function () {
+            console.log(audio)
+            if (name==false) {
+              audio.play();
+              name = true;
+            } else {
+              audio.pause();
+              name = false;
+            }
+
+          });
+          x = x+1
+          
+        });
+      });
+    }).catch(function (error) {
+      console.error('Erreur lors du chargement du fichier JSON :', error);
+    });
+    // Gestion du formulaire pour ajouter une nouvelle musique
+document.getElementById('musiqueForm').addEventListener('submit', function (event) {
+    
+    event.preventDefault();
+    var titre = document.getElementById('titre').value;
+
+    var description = document.getElementById('description').value;
+
+    var Extrait = document.getElementById('Extrait').files[0];
+    var Extraiturl = URL.createObjectURL(Extrait);
+
+    var lien = document.getElementById('lien').value;
+    
+    var image = document.getElementById('image').files[0]; 
+    var imageurl = URL.createObjectURL(image);
+    
+
+    // Ajouter un nouvel objet musique
+    var newMusic = {titre, description, Extraiturl, lien, imageurl};
+
+    // Ajouter un élément HTML pour afficher la musique
+    var musicList = document.querySelector('.garen');
+    var musicItem = document.createElement("section");
+    musicItem.classList.add("music-item");
+    musicItem.innerHTML = 
+      
+            "<h2>" + newMusic.titre + "</h2>" +
+            "<p>" + newMusic.description + "</p>" +
+            '<button class="play">⏵</button>'+"<audio src='" + newMusic.Extraiturl + "'></audio>" +
+            "<img src='" + newMusic.imageurl + "' alt='Image musique'/>"+
+            "<a href='" + newMusic.lien + "' target='_blank'>Lien vers Youtube</a>"; 
+
+        var x = 0
+        
+          
+          
+          var name = false
+          var audio = document.querySelectorAll("audio") [x] ;
+        
+          var bouton = document.querySelectorAll('.play') [x];
+          bouton.addEventListener('click', function () {
+            console.log(audio)
+            if (name==false) {
+              audio.play();
+              name = true;
+            } else {
+              audio.pause();
+              name = false;
+            }
+
+          });
+          x = x+1
+          
+       
+        
+          
+    
+    musicList.appendChild(musicItem);
+    var envoie = "https://perso-etudiant.u-pem.fr/~gambette/portrait/api.php?format=json&login=nino.marian&courriel=ninom0801@gmail.com&message=test" 
+    console.log(envoie)
+  });
+  });
+</script>
+
+<link rel="stylesheet" href="Nino.css">
+
+
+
+</html>
